@@ -12,6 +12,7 @@
         <a href={{ url_for('main.create_pitches') }}><button>Create Pitch</button></a>
 {% for word in pitch %}
     <p>{{word.pitch}}</p>
+    <a href="/comment/new/{{pitch.id}}"><button>comments</button></a>
 {% endfor %}
 </div>    
 {% endblock%}
