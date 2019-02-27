@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+{% block content %}
+<div class="container">
+
+        <h1>Comments</h1>
+        <hr>
+
+        {% if reviews %}
+            {{macro.displayReviews(reviews)}}
+
+        {% else%}
+            <h3 class="text-center">This movie has no reviews </h3>
+
+            <a class="btn btn-success btn-lg text-center" href="/movie/review/new/{{movie.id}}"> Write a comment</a>
+        {% endif %}
+
+</div>
+{% endblock%}

@@ -16,3 +16,12 @@ class UpdateProfile(FlaskForm):
 #     password = PasswordField('Password',validators =[Required()])
 #     remember = BooleanField('Remember me')
 #     submit = SubmitField('Sign In')
+
+class CreatePitches(FlaskForm):
+    username = StringField('user name',validators=[Required()])
+    pitch = TextAreaField('Create your own pitch', validators=[Required()])
+    submit = SubmitField('Submit')
+
+class CommentForm(FlaskForm):
+    comment = TextAreaField('Post Of The Comment')
+    submit = SubmitField('Submit')
