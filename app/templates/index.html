@@ -10,9 +10,8 @@
 <div class="container">
         <h1>Welcome to pitches</h1>
         <a href={{ url_for('main.create_pitches') }}><button>Create Pitch</button></a>
-{% for pitch in pitches %}
-    <h3>{{pitch.username}}</h3>
-    <p>{{pitch.pitch}}</p>
+{% for word in pitch %}
+    <p>{{word.pitch}}</p>
 {% endfor %}
 </div>    
 {% endblock%}

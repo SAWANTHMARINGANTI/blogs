@@ -18,7 +18,6 @@ class UpdateProfile(FlaskForm):
 #     submit = SubmitField('Sign In')
 
 class CreatePitches(FlaskForm):
-    username = StringField('user name',validators=[Required()])
     pitch = TextAreaField('Create your own pitch', validators=[Required()])
     submit = SubmitField('Submit')
 
