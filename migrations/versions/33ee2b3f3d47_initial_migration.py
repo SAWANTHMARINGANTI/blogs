@@ -1,8 +1,8 @@
 """Initial Migration
 
-Revision ID: 3b62d19cff76
+Revision ID: 33ee2b3f3d47
 Revises: 
-Create Date: 2019-02-26 08:41:57.484272
+Create Date: 2019-02-27 10:27:44.231661
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3b62d19cff76'
+revision = '33ee2b3f3d47'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,15 +23,18 @@ def upgrade():
     sa.Column('comment', sa.String(length=255), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('pitches',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('pitch', sa.String(length=255), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=255), nullable=True),
     sa.Column('email', sa.String(length=255), nullable=True),
-    sa.Column('comment_id', sa.Integer(), nullable=True),
     sa.Column('bio', sa.String(length=255), nullable=True),
     sa.Column('profile_pic_path', sa.String(), nullable=True),
-    sa.Column('password_secure', sa.String(length=255), nullable=True),
-    sa.ForeignKeyConstraint(['comment_id'], ['comments.id'], ),
+    sa.Column('pass_secure', sa.String(length=255), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)
@@ -44,5 +47,6 @@ def downgrade():
     op.drop_index(op.f('ix_users_username'), table_name='users')
     op.drop_index(op.f('ix_users_email'), table_name='users')
     op.drop_table('users')
+    op.drop_table('pitches')
     op.drop_table('comments')
     # ### end Alembic commands ###
