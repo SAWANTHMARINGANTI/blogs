@@ -14,6 +14,7 @@
         <a href={{ url_for('main.create_pitches') }}>Create Pitch</a>
         </div>
 {% for word in pitch %}
+    <p>{{word.user.username}}</p>
     <p>{{word.pitch}}</p>
     <div class="well-sm">
     <a href="/comment/new/{{word.id}}"><button id="but">comments</button></a><br>

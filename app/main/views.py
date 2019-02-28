@@ -59,7 +59,7 @@ def create_pitches():
 
         return redirect(url_for('main.index'))
 
-    return render_template('pitches.html',form = form)    
+    return render_template('pitches.html',form = form,user= current_user)    
 
 @main.route('/comment/new/<int:id>', methods=['GET','POST'])
 @login_required
