@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort
 from . import main
 from .forms import ReviewForm,UpdateProfile,CreatePitches,CommentForm
 from ..models import User,Pitch,Comment
-from flask_login import login_required
+from flask_login import login_required,current_user
 from .. import db
 
 @main.route('/')
@@ -11,7 +11,7 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-    title = 'Home'
+    title = '60sec-Pitch'
     pitch = Pitch.query.all()
     return render_template('index.html', title = title,pitch = pitch)
 
@@ -52,7 +52,7 @@ def create_pitches():
 
         pitch=form.pitch.data
 
-        new_pitch=Pitch(pitch = pitch)
+        new_pitch=Pitch(pitch = pitch,user= current_user)
 
         db.session.add(new_pitch)
         db.session.commit()
@@ -71,13 +71,14 @@ def create_comments(id):
 
         comment=form.comment.data
 
-        new_comment= Comment(comment= comment,pitches_id = id)
+        new_comment= Comment(comment= comment,pitches_id = id,user= current_user)
         db.session.add(new_comment)
         db.session.commit()
 
-        comment = Comment.query.filter_by(pitches_id=id).all()
+    comment = Comment.query.filter_by(pitches_id=id).all()
+        
 
-    return render_template('comment.html',comment = comment,form = form)        
+    return render_template('comment.html',comment = comment, form = form)        
 
 
         

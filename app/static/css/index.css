@@ -1,6 +1,12 @@
-#container {
-  background-color: blue;
+.container {
+  background-color: rgb(218, 218, 224);
+  font-family: serif;
 }
+.well{font-size:30px;
+font-weight: 900;}
+.well:hover{background-color: azure;}
 .title {
   color: blueviolet;
 }
+#heading{text-align:center;
+font-family: monospace;}
