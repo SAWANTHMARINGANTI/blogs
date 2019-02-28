@@ -15,8 +15,10 @@
         </div>
 {% for word in pitch %}
     <p>{{word.pitch}}</p>
-    <a href="/comment/new/{{word.id}}"><button>comments</button></a>
-    <button>Upvote</button><button>Downvote</button>
+    <div class="well-sm">
+    <a href="/comment/new/{{word.id}}"><button>comments</button></a><br>
+    <button><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqNdXN3wbKLvLD8VnZ_IN5ykRc7r7oJkIwitRpgC9h5vkwiOQ9" height="20"></button><button>Downvote</button>
+    </div>
 {% endfor %}
 </div>    
 {% endblock%}
