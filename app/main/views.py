@@ -71,11 +71,11 @@ def create_comments(id):
 
         comment=form.comment.data
 
-        new_comment= Comment(comment= comment,pitch_id = id)
+        new_comment= Comment(comment= comment,pitches_id = id)
         db.session.add(new_comment)
         db.session.commit()
 
-    comment = Comment.query.filter_by(pitch_id=id).all()
+        comment = Comment.query.filter_by(pitches_id=id).all()
 
     return render_template('comment.html',comment = comment,form = form)        
 
