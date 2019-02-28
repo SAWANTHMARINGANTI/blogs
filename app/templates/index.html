@@ -16,6 +16,7 @@
 {% for word in pitch %}
     <p>{{word.pitch}}</p>
     <a href="/comment/new/{{word.id}}"><button>comments</button></a>
+    <button>Upvote</button><button>Downvote</button>
 {% endfor %}
 </div>    
 {% endblock%}
