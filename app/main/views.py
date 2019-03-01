@@ -4,7 +4,7 @@ from .forms import ReviewForm,UpdateProfile,BlogForm,CommentForm,SubscribeForm
 from ..models import User,Comment,Blog,Subscribe,Quote
 from flask_login import login_required,current_user
 from .. import db
-from .request import get_quote
+from ..request import get_quote
 @main.route('/')
 def index():
     
