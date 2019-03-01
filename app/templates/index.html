@@ -8,7 +8,9 @@
 {% block content %}
 
 <div class="container">
-    
+{% for qt in quote %}  
+<p>{{qt.author}}</p>  
+{% endfor %}
         <h1 id="heading">Welcome to pitches</h1>
         <div class='well'>
         <a href={{ url_for('main.create_blogs') }}>Create a post</a>

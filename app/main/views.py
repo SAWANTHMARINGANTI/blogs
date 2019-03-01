@@ -1,19 +1,21 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from .forms import ReviewForm,UpdateProfile,BlogForm,CommentForm,SubscribeForm
-from ..models import User,Comment,Blog,Subscribe
+from ..models import User,Comment,Blog,Subscribe,Quote
 from flask_login import login_required,current_user
 from .. import db
-
+from .request import get_quote
 @main.route('/')
 def index():
     
     '''
     View root page function that returns the index page and its data
     '''
+
     title = 'Blog about it !'
+    quote=get_quote()
     blog = Blog.query.all()
-    return render_template('index.html', title = title,blog = blog)
+    return render_template('index.html', title = title,quote = quote,blog = blog)
 
 @main.route('/user/<uname>')
 def profile(uname):

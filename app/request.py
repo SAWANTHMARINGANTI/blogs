@@ -11,10 +11,14 @@ def get_quote():
         get_quote_data=url.read()
         get_quote_response=json.loads(get_quote_data)
 
+        quote_objects= None
+
         if get_quote_response:
             id=get_quote_response.get('id')
             author=get_quote_response.get('author')
+            quote=get_quote_response.get('quote')
+            permalink=get_quote_response.get('permalink')
 
-        quote_objects= None
-    return source_objects    
+        
+    return quote_objects    
 
