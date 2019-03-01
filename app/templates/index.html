@@ -11,14 +11,14 @@
     
         <h1 id="heading">Welcome to pitches</h1>
         <div class='well'>
-        <a href={{ url_for('main.create_pitches') }}>Create Pitch</a>
+        <a href={{ url_for('main.create_blogs') }}>Create a post</a>
         </div>
-{% for word in pitch %}
+{% for word in blog %}
     <p>{{word.user.username}}</p>
-    <p>{{word.pitch}}</p>
+    <h3>{{word.title}}</h3>
+    <p>{{word.blog}}</p>
     <div class="well-sm">
     <a href="/comment/new/{{word.id}}"><button id="but">comments</button></a><br>
-    <button><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqNdXN3wbKLvLD8VnZ_IN5ykRc7r7oJkIwitRpgC9h5vkwiOQ9" height="30"></button><button><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkkMmwEiCMuhCoDYbVcfgNVrB9TtrclVHEhPo4vjiudmDjCAGb" height="30"></button>
     </div>
 {% endfor %}
 </div>    

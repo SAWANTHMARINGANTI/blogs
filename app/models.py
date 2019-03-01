@@ -12,11 +12,10 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255),index = True)
     email = db.Column(db.String(255),unique = True,index = True)
-    # comment_id = db.Column(db.Integer,db.ForeignKey('comments.id'))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
-    pitch = db.relationship('Pitch',backref = 'user',lazy="dynamic")
+    blog = db.relationship('Blog',backref = 'user',lazy="dynamic")
     comment = db.relationship('Comment',backref = 'user',lazy="dynamic")
 
     @property
@@ -34,20 +33,39 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
-class Pitch(db.Model):
-    __tablename__ = 'pitches'
+class Blog(db.Model):
+    __tablename__ = 'blogs'
 
     id = db.Column(db.Integer,primary_key = True)
-    pitch = db.Column(db.String(255))
+    title = db.Column(db.String(255))
+    blog = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
-    comment = db.relationship("Comment", backref="pitches", lazy = "dynamic")
+    comment = db.relationship("Comment", backref="blogs", lazy = "dynamic")
     
 
 class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer,primary_key = True)
+    usernames = db.Column(db.String(255),index = True)
     comment = db.Column(db.String(255))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
+    blog_id = db.Column(db.Integer, db.ForeignKey("blogs.id"))
 
+class Subscribe(db.Model):
+    __tablename__ = 'subscribes'
+
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String(255),index = True)
+    email = db.Column(db.String(255),unique = True,index = True)
+
+class Quote():
+    '''
+    class that creates the quote instance
+    '''
+
+    def __init__(self,id,author,quote,permalink):
+        id =  id
+        author = author
+        quote = quote
+        permalink = permalink
