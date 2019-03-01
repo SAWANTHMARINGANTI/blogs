@@ -11,6 +11,10 @@ def get_quote():
         get_quote_data=url.read()
         get_quote_response=json.loads(get_quote_data)
 
+        if get_quote_response:
+            id=get_quote_response.get('id')
+            author=get_quote_response.get('author')
+
         quote_objects= None
     return source_objects    
 
