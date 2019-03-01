@@ -1,9 +1,9 @@
-# 60sec-Pitch
-#### Pitch It is a web application that is meant for users to add pitches and one can get likes or comments, February 27th 2019
+# My Blog
+#### Blog is a web application where user can post the quote and see the blogs, March 01st 2019.
 
 #### By **NICOLE H.**
 ## Description
-Pitch It is a web application that is meant for users to add pitches and one can get likes or comments.The user has to login into his/her account and sign in if the user has no account and he/she can leave a comment.
+Blog is a web application where user can post the quote and see the blogs.and can subscribes to get the latest updates on post. Users can subscribe to the blog to get the latest updates on articles.The blog supports comments from readers and blog writers can determine whether to delete the comments or not. Users can also delete blog posts at their discretion.After the writer has posted a new blog post, subscribers will receive an email notification with a link to the blog post.
 ## Installation Requirements
 * Python3.6
 * Pip
@@ -14,10 +14,8 @@ For now the project is only viewable in the terminal!
 
 ## App Specifications
 ### (SPECs)The following is what my program should handle:
-* The user has to login into his/her account and sign in if the user has no account
-* The user is able to read pitches without creating an account but the user cannot pitch without an account
-* The user can also leave a comment to any pitch he/she wants but has to first login or create an account 
-* The user can also update his/her profile however the user like and add a bio
+
+user can view blogs click on article and view the whole blog post. and it display the whole blogs. user can write comments on the comment test area box.the name also is required.then the comment is displayed on the blog content. you fill subscription form that user can receive a subscription confirmation email.
 
 ### Bugs
 SQLAlchemy errors, automatic sign out has a short time span
