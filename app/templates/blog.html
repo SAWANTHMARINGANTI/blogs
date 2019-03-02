@@ -8,10 +8,19 @@
 {% block content %}
     <div class="container">
 
-        <div>
+            {% if current_user.is_authenticated %}
+            <div>
 
-            {{ wtf.quick_form(form) }}
-        </div>
+                    {{ wtf.quick_form(form) }}
+                </div>
+            {% else %}
+            <div class="well-sm">
+                <h2>No Account</h2>
+            <p><strong> Dear user,<br>user You seem to have no account, hence you can not create a post or blog.</strong></p>
+            <h4><a href="{{url_for('auth.login')}}">LOGIN</a> <br> <a href="/"> HOME </a></h4>
+            </div>
+            {%endif%}
+
 
     </div>
 

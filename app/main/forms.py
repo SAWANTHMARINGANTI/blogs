@@ -24,7 +24,7 @@ class BlogForm(FlaskForm):
 
 class CommentForm(FlaskForm):
     usernames = TextAreaField('User Name', validators=[Required()])
-    comment = TextAreaField('Post Of The Comment', validators=[Required()])
+    comment = TextAreaField('Comment', validators=[Required()])
     submit = SubmitField('Submit')
 
 class SubscribeForm(FlaskForm):

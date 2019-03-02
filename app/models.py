@@ -52,6 +52,11 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     blog_id = db.Column(db.Integer, db.ForeignKey("blogs.id"))
 
+    def delete_comment(self):
+        db.session.delete(self)
+        db.session.commit()
+
+
 class Subscribe(db.Model):
     __tablename__ = 'subscribes'
 
@@ -64,8 +69,8 @@ class Quote():
     class that creates the quote instance
     '''
 
-    def __init__(self,id,author,quote,permalink):
-        id =  id
-        author = author
-        quote = quote
-        permalink = permalink
+    def __init__(self,id,author,quote):
+        self.id =  id
+        self.author = author
+        self.quote = quote
+        

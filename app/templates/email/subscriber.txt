@@ -1,0 +1,3 @@
+Hello {{user.username}}
+
+There is an update to My life Blog.

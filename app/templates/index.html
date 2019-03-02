@@ -9,13 +9,28 @@
 
 <div class="container">
   
-<p>{{quote.author}}</p>  
-<p>{{quote.id}}</p>
 
-        <h1 id="heading">Welcome to pitches</h1>
-        <div class='well'>
-        <a href={{ url_for('main.create_blogs') }}>Create a post</a>
+        <h1 id="heading">Welcome to My Blog</h1>
+        {% if current_user.is_authenticated %}
+        <div class="well">
+                <a href={{ url_for('main.create_blogs') }}>New Post</a>
         </div>
+        {% else %}
+        </p>
+        {%endif%}
+        
+<br>
+<br>
+    
+    <div class="well-lg" id="random">
+        <h2>Random Quote</h2> <br>
+        <p>{{quote.quote}}</p>
+        <p>Author: {{quote.author}}</p> 
+    </div>
+    
+        
+
+        
 {% for word in blog %}
     <p>{{word.user.username}}</p>
     <h3>{{word.title}}</h3>

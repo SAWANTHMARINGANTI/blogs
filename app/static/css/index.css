@@ -1,5 +1,7 @@
+body{background-image: url(https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+background-size:contain;}
 .container {
-  background-color: rgb(218, 218, 224);
+  background-color: rgb(240, 238, 210);
   font-family: serif;
 }
 .well{font-size:30px;
@@ -9,4 +11,15 @@ font-weight: 900;}
   color: blueviolet;
 }
 #heading{text-align:center;
-font-family: monospace;}
+font-family: monospace;
+color:rgb(49, 75, 49)}
+
+#random{border: 2px dotted rgb(98, 153, 16);
+color:rgb(49, 75, 49);
+background-color: rgb(209, 209, 187);
+text-align:center;
+margin: 30px;
+}
+
+#navbar{background-color:rgb(49, 75, 49);
+color:black;}

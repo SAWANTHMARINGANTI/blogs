@@ -17,6 +17,14 @@
             {% for word in comment %}
             <h4>{{word.usernames}}</h4>
             <p>--{{word.comment}}</p>
+
+
+        {% if current_user.is_authenticated %}
+        <a href="/delete/new/{{word.id}}"><button>DELETE</button></a>
+        {% else %}
+        <p> </p>
+        {%endif%}
+
             {% endfor %}
         </div>
 </div>

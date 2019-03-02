@@ -5,6 +5,8 @@ from ..models import User,Comment,Blog,Subscribe,Quote
 from flask_login import login_required,current_user
 from .. import db
 from ..request import get_quote
+from ..email import mail_message
+
 @main.route('/')
 def index():
     
@@ -46,7 +48,7 @@ def update_profile(uname):
     return render_template('profile/update.html',form =form)
 
 @main.route('/blog/new', methods=['GET','POST'])
-@login_required
+
 def create_blogs():
     form = BlogForm()
 
@@ -61,7 +63,17 @@ def create_blogs():
 
         return redirect(url_for('main.index'))
 
-    return render_template('blog.html',form = form,user= current_user)    
+    return render_template('blog.html',form = form,user= current_user) 
+
+
+@main.route('/delete/new/<int:id>', methods=['GET','POST'])
+def delete_comment(id):
+    comment = Comment.query.filter_by(blog_id=id).first()
+
+    if comment is not None:
+        comment.delete_comment()
+        return redirect(url_for('main.index'))
+    
 
 @main.route('/comment/new/<int:id>', methods=['GET','POST'])
 def create_comments(id):
@@ -92,10 +104,8 @@ def Subscribe():
         new_subscribe = Subscribe( name = name, email = email)
         db.session.add(new_subscribe)
         db.session.commit()
-
-        flash('subscription complete')
+        mail_message("New Updates","email/subscriber",user.email,name=name)
         return redirect(url_for('main.index'))
 
+    return render_template('subscribe.html',form = form)     
 
-
-    return render_template('subscribe.html',form = form,user= current_user)     
