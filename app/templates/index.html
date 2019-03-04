@@ -32,12 +32,20 @@
 
         
 {% for word in blog %}
-    <p>{{word.user.username}}</p>
+    <h5>{{word.user.username}}</h5>
     <h3>{{word.title}}</h3>
-    <p>{{word.blog}}</p>
+    <p><strong>{{word.blog}}</strong></p>
     <div class="well-sm">
     <a href="/comment/new/{{word.id}}"><button id="but">comments</button></a><br>
     </div>
+
+    {% if current_user.is_authenticated %}
+        <a href="{{url_for('main.delete_blog',id=word.id)}}"><button>DELETE</button></a>
+        <a href="{{url_for('main.upgrade_blogs',id=word.id)}}"><button>Update</button></a>
+        {% else %}
+        <p> </p>
+    {%endif%}
+
 {% endfor %}
 </div>    
 {% endblock%}

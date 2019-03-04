@@ -38,9 +38,13 @@ class Blog(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String(255))
-    blog = db.Column(db.String(255))
+    blog = db.Column(db.String(955))
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     comment = db.relationship("Comment", backref="blogs", lazy = "dynamic")
+
+    def delete_blog(self):
+        db.session.delete(self)
+        db.session.commit()
     
 
 class Comment(db.Model):
@@ -61,8 +65,8 @@ class Subscribe(db.Model):
     __tablename__ = 'subscribes'
 
     id = db.Column(db.Integer,primary_key = True)
-    name = db.Column(db.String(255),index = True)
-    email = db.Column(db.String(255),unique = True,index = True)
+    name = db.Column(db.String(255))
+    email = db.Column(db.String(255),unique = True)
 
 class Quote():
     '''

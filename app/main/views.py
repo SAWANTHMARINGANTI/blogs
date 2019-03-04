@@ -1,6 +1,6 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from .forms import ReviewForm,UpdateProfile,BlogForm,CommentForm,SubscribeForm
+from .forms import ReviewForm,UpdateProfile,BlogForm,CommentForm,SubscribeForm,UpdateForm
 from ..models import User,Comment,Blog,Subscribe,Quote
 from flask_login import login_required,current_user
 from .. import db
@@ -47,8 +47,38 @@ def update_profile(uname):
 
     return render_template('profile/update.html',form =form)
 
-@main.route('/blog/new', methods=['GET','POST'])
+    
+@main.route('/delete/blog,<int:id>', methods=['GET','POST'])
+def delete_blog(id):
+    blog = Blog.query.filter_by(id=id).first()
+    
+    if blog is not None:
+        blog.delete_blog()
+        return redirect(url_for('main.index'))
+    return render_template('index.html')
 
+@main.route('/update/new/<int:id>', methods=['GET','POST'])
+def upgrade_blogs(id):
+    blogs=Blog.query.filter_by(id=id).first()
+
+    if blogs is None:
+        abort(404)
+
+    form = UpdateForm()
+
+    if form.validate_on_submit():
+
+        blogs.blog=form.blog.data
+
+
+        db.session.add(blogs)
+        db.session.commit()
+
+        return redirect(url_for('main.index'))
+
+    return render_template('update.html',form = form,user= current_user) 
+
+@main.route('/blog/new', methods=['GET','POST'])
 def create_blogs():
     form = BlogForm()
 
@@ -61,6 +91,10 @@ def create_blogs():
         db.session.add(new_blog)
         db.session.commit()
 
+        subscriber=Subscribe.query.all()
+        for subscribe in subscriber:
+           mail_message("New Blog Post","email/subscribe",subscribe.email,user=subscribe,blog=new_blog)
+
         return redirect(url_for('main.index'))
 
     return render_template('blog.html',form = form,user= current_user) 
@@ -68,12 +102,12 @@ def create_blogs():
 
 @main.route('/delete/new/<int:id>', methods=['GET','POST'])
 def delete_comment(id):
-    comment = Comment.query.filter_by(blog_id=id).first()
-
+    comment = Comment.query.filter_by(id=id).first()
+    form = CommentForm()
     if comment is not None:
         comment.delete_comment()
-        return redirect(url_for('main.index'))
-    
+        
+    return render_template('comment.html', form = form)
 
 @main.route('/comment/new/<int:id>', methods=['GET','POST'])
 def create_comments(id):
@@ -94,18 +128,20 @@ def create_comments(id):
     return render_template('comment.html',comment = comment, form = form)        
 
 @main.route('/subs/new/', methods=['GET','POST'])    
-def Subscribe():
-    form=SubscribeForm()
-
-    if form.validate_on_submit():
-        name=form.name.data
-        email=form.email.data
+def Subscribes():
+    subscribeform=SubscribeForm()
+    print(Subscribe.name)
+    if subscribeform.validate_on_submit():
+        name=subscribeform.name.data
+        email=subscribeform.email.data
     
-        new_subscribe = Subscribe( name = name, email = email)
-        db.session.add(new_subscribe)
+        new_sub=Subscribe(name=name,email=email)
+        db.session.add(new_sub)
         db.session.commit()
-        mail_message("New Updates","email/subscriber",user.email,name=name)
+
+        mail_message("Thank you for subscribing","email/subscriber",new_sub.email)
+     
         return redirect(url_for('main.index'))
 
-    return render_template('subscribe.html',form = form)     
+    return render_template('subscribe.html',subscribeform = subscribeform)     
 
