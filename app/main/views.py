@@ -93,7 +93,7 @@ def create_blogs():
 
         subscriber=Subscribe.query.all()
         for subscribe in subscriber:
-           mail_message("New Blog Post","email/subscribe",subscribe.email,user=subscribe,blog=new_blog)
+           mail_message("New Blog Post","email/subscriber",subscribe.email,user=subscribe,blog=new_blog)
 
         return redirect(url_for('main.index'))
 
@@ -106,6 +106,7 @@ def delete_comment(id):
     form = CommentForm()
     if comment is not None:
         comment.delete_comment()
+        return redirect (url_for('main.index'))
         
     return render_template('comment.html', form = form)
 
@@ -118,7 +119,7 @@ def create_comments(id):
         usernames=form.usernames.data
         comment=form.comment.data
 
-        new_comment= Comment(comment= comment,usernames = usernames,blog_id = id,user= current_user)
+        new_comment= Comment(comment= comment,usernames = usernames,blog_id = id)
         db.session.add(new_comment)
         db.session.commit()
 
