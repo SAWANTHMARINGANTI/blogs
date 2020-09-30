@@ -3,7 +3,7 @@
 
 #### By **NICOLE H.**
 ## Description
-Blog is a web application where user can post the quote and see the blogs.and can subscribes to get the latest updates on post. Users can subscribe to the blog to get the latest updates on articles.The blog supports comments from readers and blog writers can determine whether to delete the comments or not. Users can also delete blog posts at their discretion.After the writer has posted a new blog post, subscribers will receive an email notification with a link to the blog post.
+Blog is a web application where user can post the quote and see the blogs.and can subscribes to get the latest updates on post. Users can subscribe to the blog to get the latest updates on articles.The blog supports comments from readers and blog writers can determine whether to delete the comments or not. Users can also delete blog posts at their discretion.After the writer has posted a new blog post, subscribers will receive an email notification with a link to the blog post.Blogs are very popular these days as they have a great value in todays economy and hold a lot of potential to professional services and marketing.they can always be used to spread information quicklyand succinctly.
 ## Installation Requirements
 * Python3.6
 * Pip
@@ -15,7 +15,7 @@ For now the project is only viewable in the terminal!
 ## App Specifications
 ### (SPECs)The following is what my program should handle:
 
-user can view blogs click on article and view the whole blog post. and it display the whole blogs. user can write comments on the comment test area box.the name also is required.then the comment is displayed on the blog content. you fill subscription form that user can receive a subscription confirmation email.
+user can view blogs by clicking on articles and view the blog post. and it will display the whole blogs. user can write comments on the comment test area box.the name and email is also required.then the comment is displayed on the blog content. you fill a subscription form so that the user can receive a subscription confirmation email.
 
 ### Bugs
 SQLAlchemy errors, automatic sign out has a short time span
